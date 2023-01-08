@@ -1,0 +1,106 @@
+$flipper-width: 400px;
+$flipper-heigth: 175px;
+
+:root {
+  --animation-time: 0.2s;  
+  --flipper-heigth: 175px;
+/*  --flipper-width: 400px;*/  
+}
+
+* {
+  border: 2px solid red;  
+}
+
+html, body {
+  margin: 0;    
+}
+
+.wrapper {
+/*  margin-top: 100px;*/
+/*  position: relative;  */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  
+/*  transform: perspective(1500px) rotateY(-52deg) scale(0.5,0.5);*/
+/*  transform: perspective(1500px) rotateY(-52deg) scale(0.5,0.5);*/
+  
+  transform-origin: 50% 50%;
+}
+
+.flipper-front {
+  margin: 0 auto;
+/*  width: 175px;*/  
+/*  height: 400px;  */
+  width: $flipper-width;
+  height: $flipper-heigth;
+  transform-origin: 50% 50%;
+}
+
+.flipper-back {
+  margin: 0 auto;
+  width: 175px;
+  height: 800px;  
+  margin-top: -800px;
+  transform-origin: 50% 50%;
+}
+
+.flipper-front .leaf { 
+  z-index: 10;
+}
+
+.flipper-back .leaf {
+  z-index: 1;
+  background-color: floralwhite;
+}
+
+.leaf {  
+  width: 100%;
+  height: 50%;
+  background-color: darkgray;
+}
+
+.top {
+  transform-origin: 50% 100%;
+  animation: var(--animation-time) linear 0s flip-up;
+}
+
+.bottom {
+  visibility: hidden;
+  transform-origin: 50% 0%;
+  animation: var(--animation-time) linear 0s flip-down;
+  animation-delay: var(--animation-time);
+}
+
+@keyframes flip-up {
+  0% {
+    transform: perspective(2500px) rotateY(-10deg);
+  }
+  
+  50% {
+    transform:  perspective(2500px) rotateY(-10deg) rotateX(-45deg) scaleY(1.2);
+  }
+  
+  100% {
+    transform:  perspective(2500px) rotateY(-10deg) rotateX(-90deg) scaleY(1.8);
+    display: none;
+  }
+}
+
+@keyframes flip-down {
+  0% {
+    visibility: visible;
+    transform:  perspective(2500px) rotateY(-10deg) rotateX(90deg) scaleY(1.8);
+  }
+  
+  50% {
+    transform:  perspective(2500px) rotateY(-10deg) rotateX(45deg) scaleY(1.2);
+  }
+  
+  100% {
+    transform:  perspective(2500px) rotateY(-10deg) rotateX(0deg) scaleY(1);
+  }  
+}
